@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 from data_structures.dataclass_setup import ImmutableDataclass
 from data_structures.dataclass_setup import SlottedDataclass
-from data_structures.dataclass_setup import TestDataclass
+from data_structures.dataclass_setup import BasicDataclass
 from data_structures.pydantic_setup import TestPydanticModel
 
 
@@ -37,7 +37,7 @@ def benchmark_dict(iteration: int, access_func: Callable) -> tuple:
 
 
 def benchmark_dataclasses(
-        iteration: int, struct_type: TestDataclass | ImmutableDataclass | SlottedDataclass, access_func: Callable
+        iteration: int, struct_type: BasicDataclass | ImmutableDataclass | SlottedDataclass, access_func: Callable
 ):
     start = perf_counter_ns()
     struct_instance = struct_type(*[f"{field}__{iteration}" for field in FIELD_NAMES])

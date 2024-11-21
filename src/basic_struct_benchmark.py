@@ -1,7 +1,7 @@
 from data_structures.namedtuple_setup import BasicNamedTuple
 from data_structures.namedtuple_setup import access_namedtuple_elements
 from data_structures.dict_setup import access_dict_elements
-from data_structures.dataclass_setup import TestDataclass
+from data_structures.dataclass_setup import BasicDataclass
 from data_structures.dataclass_setup import access_dataclass_elements
 from data_structures.pydantic_setup import TestPydanticModel
 from data_structures.pydantic_setup import access_pydantic_elements
@@ -18,7 +18,7 @@ def main():
     for i in range(1_000_000):
         namedtuple_measurements.append(ut.benchmark_namedtuple(i, BasicNamedTuple, access_namedtuple_elements))
         dict_measurements.append(ut.benchmark_dict(i, access_dict_elements))
-        basic_dataclass_measurements.append(ut.benchmark_dataclasses(i, TestDataclass, access_dataclass_elements))
+        basic_dataclass_measurements.append(ut.benchmark_dataclasses(i, BasicDataclass, access_dataclass_elements))
         pydantic_measurements.append(ut.benchmark_pydantic(i, TestPydanticModel, access_pydantic_elements))
 
     namedtuple_avg_size, namedtuple_avg_time = ut.calculate_averages(namedtuple_measurements)
