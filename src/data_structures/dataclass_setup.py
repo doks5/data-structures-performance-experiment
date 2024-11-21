@@ -1,15 +1,24 @@
 from dataclasses import make_dataclass, fields
 
 
+DATACLASS_FIELDS = [(f"key{i}", str) for i in range(1, 26)]
+
+
 TestDataclass = make_dataclass(
     'TestDataclass',
-    [(f"key{i}", str) for i in range(1, 26)]
+    DATACLASS_FIELDS
 )
 
 ImmutableDataclass = make_dataclass(
     'ImmutableDataclass',
-    [(f"key{i}", str) for i in range(1, 26)],
+    DATACLASS_FIELDS,
     frozen=True
+)
+
+SlottedDataclass = make_dataclass(
+    'SlottedDataclass',
+    DATACLASS_FIELDS,
+    slots=True,
 )
 
 
