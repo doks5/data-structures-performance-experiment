@@ -14,4 +14,3 @@ def access_namedtuple_elements(data_struct: tuple):
 
     "key12" in data_struct._fields
     "nonexistent_field" in data_struct._fields
-    "nonexistent_value" in data_struct
