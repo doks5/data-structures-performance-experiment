@@ -82,9 +82,9 @@ def generate_diagram(
 
     container = ax.bar(data_groups, data_points)
     if plot_format:
-        ax.bar_label(container, fmt=plot_format)
+        ax.bar_label(container, label_type="center", fmt=plot_format)
     else:
-        ax.bar_label(container)
+        ax.bar_label(container, label_type="center")
 
     if labels.get("x"):
         ax.set_xlabel(labels["x"])
