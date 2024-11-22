@@ -41,13 +41,13 @@ def main():
 
     ut.generate_diagram(
         average_sizes,
-        {"y": "Average struct size in kilobytes"},
+        {"y": "Average size (in KB)"},
         "results/basic_structures_avg_sizes.png",
         "{:,.2f}"
     )
     ut.generate_diagram(
         average_times,
-        {"y": "Average struct creation and access times in milliseconds"},
+        {"y": "Average creation and access time (in milliseconds)"},
         "results/basic_structures_avg_times.png",
         "{:,.3f}"
     )
