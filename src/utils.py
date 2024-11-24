@@ -2,6 +2,7 @@ from pympler.asizeof import asizeof
 from typing import Callable
 from time import perf_counter_ns
 import matplotlib.pyplot as plt
+import pandas as pd
 
 from data_structures.dataclass_setup import ImmutableDataclass
 from data_structures.dataclass_setup import SlottedDataclass
@@ -27,6 +28,18 @@ def benchmark_namedtuple(iteration: int, struct_type, access_func: Callable) -> 
 def benchmark_dict(iteration: int, access_func: Callable) -> tuple:
     start = perf_counter_ns()
     struct_instance = dict([(f"{field}", f"{field}__{iteration}") for field in FIELD_NAMES])
+    access_func(struct_instance)
+    end = perf_counter_ns()
+
+    struct_size = asizeof(struct_instance)
+    del struct_instance
+
+    return struct_size, end - start
+
+
+def benchmark_typeddict(iteration: int, struct_type: Callable, access_func: Callable) -> tuple:
+    start = perf_counter_ns()
+    struct_instance: struct_type = dict([(f"{field}", f"{field}__{iteration}") for field in FIELD_NAMES])
     access_func(struct_instance)
     end = perf_counter_ns()
 
@@ -75,12 +88,19 @@ def calculate_averages(measurements: list[tuple]) -> tuple[float, float]:
 def generate_diagram(
         data: dict, labels: dict, file_name: str, plot_format: str | None = None
 ) -> None:
+    DATA_GROUPS = "data_groups"
+    DATA_POINTS = "data_points"
+
     fig, ax = plt.subplots()
 
-    data_groups = data.keys()
-    data_points = data.values()
+    data = {
+       DATA_GROUPS : data.keys(),
+       DATA_POINTS : data.values()
+    }
+    df = pd.DataFrame(data)
+    df_sorted = df.sort_values(DATA_POINTS)
 
-    container = ax.bar(data_groups, data_points)
+    container = ax.bar(df_sorted[DATA_GROUPS], df_sorted[DATA_POINTS])
     if plot_format:
         ax.bar_label(container, label_type="center", fmt=plot_format)
     else:
