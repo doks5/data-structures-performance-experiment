@@ -5,7 +5,7 @@ DATACLASS_FIELDS = [(f"key{i}", str) for i in range(1, 26)]
 
 
 BasicDataclass = make_dataclass(
-    'TestDataclass',
+    'BasicDataclass',
     DATACLASS_FIELDS
 )
 
