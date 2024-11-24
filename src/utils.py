@@ -11,6 +11,8 @@ from data_structures.pydantic_setup import TestPydanticModel
 
 
 FIELD_NAMES = [f"key{x}" for x in range(1, 26)]
+DATA_GROUPS = "data_groups"
+DATA_POINTS = "data_points"
 
 
 def benchmark_namedtuple(iteration: int, struct_type, access_func: Callable) -> tuple:
@@ -88,9 +90,6 @@ def calculate_averages(measurements: list[tuple]) -> tuple[float, float]:
 def generate_diagram(
         data: dict, labels: dict, file_name: str, plot_format: str | None = None
 ) -> None:
-    DATA_GROUPS = "data_groups"
-    DATA_POINTS = "data_points"
-
     fig, ax = plt.subplots()
 
     data = {
