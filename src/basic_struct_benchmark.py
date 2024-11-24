@@ -4,7 +4,7 @@ from data_structures.dict_setup import BasicTypedDict
 from data_structures.dict_setup import access_dict_elements
 from data_structures.dataclass_setup import BasicDataclass
 from data_structures.dataclass_setup import access_dataclass_elements
-from data_structures.pydantic_setup import TestPydanticModel
+from data_structures.pydantic_setup import BasicPydanticModel
 from data_structures.pydantic_setup import access_pydantic_elements
 
 import utils as ut
@@ -22,7 +22,7 @@ def main():
         dict_measurements.append(ut.benchmark_dict(i, access_dict_elements))
         basic_typed_dict_measurements.append(ut.benchmark_typeddict(i, BasicTypedDict, access_dict_elements))
         basic_dataclass_measurements.append(ut.benchmark_dataclasses(i, BasicDataclass, access_dataclass_elements))
-        pydantic_measurements.append(ut.benchmark_pydantic(i, TestPydanticModel, access_pydantic_elements))
+        pydantic_measurements.append(ut.benchmark_pydantic(i, BasicPydanticModel, access_pydantic_elements))
 
     namedtuple_avg_size, namedtuple_avg_time = ut.calculate_averages(namedtuple_measurements)
     dict_avg_size, dict_avg_time = ut.calculate_averages(dict_measurements)

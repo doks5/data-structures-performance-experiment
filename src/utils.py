@@ -7,7 +7,7 @@ import pandas as pd
 from data_structures.dataclass_setup import ImmutableDataclass
 from data_structures.dataclass_setup import SlottedDataclass
 from data_structures.dataclass_setup import BasicDataclass
-from data_structures.pydantic_setup import TestPydanticModel
+from data_structures.pydantic_setup import BasicPydanticModel
 
 
 FIELD_NAMES = [f"key{x}" for x in range(1, 26)]
@@ -65,7 +65,7 @@ def benchmark_dataclasses(
     return struct_size, end - start
 
 
-def benchmark_pydantic(iteration: int, struct_type: TestPydanticModel, access_func: Callable):
+def benchmark_pydantic(iteration: int, struct_type: BasicPydanticModel, access_func: Callable):
     start = perf_counter_ns()
     struct_instance = struct_type(**{field: f"{field}__{iteration}" for field in FIELD_NAMES})
     access_func(struct_instance)
