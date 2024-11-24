@@ -53,3 +53,4 @@ venv.bak/
 
 # Additional files to be ignored
 post.md
+src/results/*.png
