@@ -88,9 +88,15 @@ def calculate_averages(measurements: list[tuple]) -> tuple[float, float]:
 
 
 def generate_diagram(
-        data: dict, labels: dict, file_name: str, plot_format: str | None = None
+        data: dict,
+        labels: dict,
+        file_name: str,
+        plot_format: str | None = None,
+        fig_size: tuple | None = None
 ) -> None:
     fig, ax = plt.subplots()
+    if fig_size:
+        fig.set_size_inches(fig_size[0], fig_size[1])
 
     data = {
        DATA_GROUPS : data.keys(),
