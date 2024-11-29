@@ -21,6 +21,13 @@ SlottedDataclass = make_dataclass(
     slots=True,
 )
 
+OptimisedDataclass = make_dataclass(
+    'OptimisedDataclass',
+    DATACLASS_FIELDS,
+    slots=True,
+    frozen=True,
+)
+
 
 def field_present(data_class: BasicDataclass | ImmutableDataclass, field_name: str) -> bool:
     return any(field.name == field_name for field in fields(data_class))
