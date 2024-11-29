@@ -92,11 +92,11 @@ def generate_diagram(
         labels: dict,
         file_name: str,
         plot_format: str | None = None,
-        fig_size: tuple | None = None
+        fig_size: tuple[float, float] | None = None
 ) -> None:
     fig, ax = plt.subplots()
     if fig_size:
-        fig.set_size_inches(fig_size[0], fig_size[1])
+        fig.set_size_inches(fig_size)
 
     data = {
        DATA_GROUPS : data.keys(),
