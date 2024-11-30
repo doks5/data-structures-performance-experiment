@@ -15,8 +15,8 @@ ImmutableDataclass = make_dataclass(
     frozen=True
 )
 
-SlottedDataclass = make_dataclass(
-    'SlottedDataclass',
+SlotsDataclass = make_dataclass(
+    'SlotsDataclass',
     DATACLASS_FIELDS,
     slots=True,
 )
@@ -29,11 +29,16 @@ OptimisedDataclass = make_dataclass(
 )
 
 
-def field_present(data_class: BasicDataclass | ImmutableDataclass, field_name: str) -> bool:
+def field_present(
+        data_class: BasicDataclass | ImmutableDataclass | SlotsDataclass | OptimisedDataclass,
+        field_name: str
+) -> bool:
     return any(field.name == field_name for field in fields(data_class))
 
 
-def access_dataclass_elements(data_struct: BasicDataclass | ImmutableDataclass) -> None:
+def access_dataclass_elements(
+        data_struct: BasicDataclass | ImmutableDataclass | SlotsDataclass | OptimisedDataclass
+) -> None:
     data_struct.key1
     data_struct.key15
     data_struct.key25
