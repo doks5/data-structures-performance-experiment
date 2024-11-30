@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 from data_structures.dataclass_setup import ImmutableDataclass
-from data_structures.dataclass_setup import SlottedDataclass
+from data_structures.dataclass_setup import SlotsDataclass
 from data_structures.dataclass_setup import BasicDataclass
 from data_structures.pydantic_setup import BasicPydanticModel
 
@@ -52,7 +52,7 @@ def benchmark_typeddict(iteration: int, struct_type: Callable, access_func: Call
 
 
 def benchmark_dataclasses(
-        iteration: int, struct_type: BasicDataclass | ImmutableDataclass | SlottedDataclass, access_func: Callable
+        iteration: int, struct_type: BasicDataclass | ImmutableDataclass | SlotsDataclass, access_func: Callable
 ):
     start = perf_counter_ns()
     struct_instance = struct_type(*[f"{field}__{iteration}" for field in FIELD_NAMES])
