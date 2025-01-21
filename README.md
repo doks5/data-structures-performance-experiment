@@ -1,5 +1,6 @@
 # data-structures-performance-experiment
 Experimental setup to test performance and memory usage of different python data structures.
+Associated article: https://curious.bg/posts/python-structures-performance-2024
 
 
 ## Setup
